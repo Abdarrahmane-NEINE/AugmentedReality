@@ -20,6 +20,9 @@ import {
   ViroNode,
   ViroQuad,
   ViroAnimations,
+   
+  ViroARTrackingTargets,
+  ViroARImageMarker,
 } from '@viro-community/react-viro';
 
 const HelloWorldSceneAR = () => {
@@ -33,8 +36,9 @@ const HelloWorldSceneAR = () => {
       // Handle loss of tracking
     }
   }
-
+ViroARTrackingTargets.createTargets({ "targetOne" : { source : require('res/targetOne.html'), orientation : "Up",    physicalWidth : 0.25 }});// real world width in meters  
   return (
+  
     <ViroARScene onTrackingUpdated={onInitialized}>
       <ViroText
         text={text}
@@ -74,32 +78,35 @@ const HelloWorldSceneAR = () => {
             resources={[require('./emoji_smile_diffuse.png'),
             require('./emoji_smile_specular.png'),
             require('./emoji_smile_normal.png')]} 
-			/>
+		  />
           <ViroQuad
             rotation={[-90, 0, 0]}
             width={.5} height={.5}
             arShadowReceiver={true}
             lightReceivingBitMask={2} />
+	
         </ViroNode>
       </ViroARPlaneSelector>
-	  <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
-        <Viro3DObject
-          //source={require('./emoji_smile.vrx')}
-          source={require('./untitled.obj')}
-          position={[0, .1, 0]}
-          scale={[.2, .2, .2]}
-         // type="VRX"
-		  type="OBJ"
-        />
-      </ViroNode>
-      {/* <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
-        <Viro3DObject
-          source={require('./emoji_smile.vrx')}
-          position={[0, .1, 0]}
-          scale={[.2, .2, .2]}
-          type="VRX"
-        />
-      </ViroNode> */}
+	  // <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
+        // <Viro3DObject
+          // //source={require('./emoji_smile.vrx')}
+          // source={require('./untitled.obj')}
+          // position={[0, .1, 0]}
+          // scale={[.2, .2, .2]}
+         // // type="VRX"
+		  // type="OBJ"
+        // />
+      // </ViroNode>
+	  
+       // <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
+        // <Viro3DObject
+          // source={require('./emoji_smile.vrx')}
+          // position={[0, .1, 0]}
+          // scale={[.2, .2, .2]}
+          // type="VRX"
+        // />
+      // </ViroNode> 
+
     </ViroARScene>
   );
 };
