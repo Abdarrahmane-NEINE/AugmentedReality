@@ -23,6 +23,7 @@ import {
    
   ViroARTrackingTargets,
   ViroARImageMarker,
+  ViroBox
 } from '@viro-community/react-viro';
 
 const HelloWorldSceneAR = () => {
@@ -36,10 +37,28 @@ const HelloWorldSceneAR = () => {
       // Handle loss of tracking
     }
   }
-ViroARTrackingTargets.createTargets({ "targetOne" : { source : require('res/targetOne.html'), orientation : "Up",    physicalWidth : 0.25 }});// real world width in meters  
+ViroARTrackingTargets.createTargets({ 
+	"targetOne" : { source : require('./singe.png'), orientation : "Up",    physicalWidth : 0.25 
+	}});// real world width in meters  
   return (
-  
+  // <ViroARScene  onTrackingUpdated={onInitialized}>  
+	  // <ViroARImageMarker target={"targetOne"} >    
+		// <ViroBox position={[0, .25, 0]} scale={[.5, .5, .5]} />  
+		// setText('Singe image found');
+	  // </ViroARImageMarker>
+  // </ViroARScene>
     <ViroARScene onTrackingUpdated={onInitialized}>
+		  <ViroARImageMarker target={"targetOne"} >
+        
+        <Viro3DObject
+          source={require('./untitled.obj')}
+          position={[0, .1, 0]}
+          scale={[-2, -2, -2]}
+          // position={[0, .1, 0]}
+          // scale={[.1, .1, .1]}
+		      type="OBJ"
+        />
+	  </ViroARImageMarker>
       <ViroText
         text={text}
         scale={[0.5, 0.5, 0.5]}
@@ -71,7 +90,7 @@ ViroARTrackingTargets.createTargets({ "targetOne" : { source : require('res/targ
             scale={[.2, .2, .2]}
             //type="OBJ"
             type="VRX"
-			animation={{name:'Take 001',run:true,loop:true, delay:1000}}/>
+			animation={{name:'Take 001',run:true,loop:true, delay:1000}}
             lightReceivingBitMask={3}
             shadowCastingBitMask={2}
             transformBehaviors={['billboardY']}
@@ -87,25 +106,25 @@ ViroARTrackingTargets.createTargets({ "targetOne" : { source : require('res/targ
 	
         </ViroNode>
       </ViroARPlaneSelector>
-	  // <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
-        // <Viro3DObject
-          // //source={require('./emoji_smile.vrx')}
-          // source={require('./untitled.obj')}
-          // position={[0, .1, 0]}
-          // scale={[.2, .2, .2]}
-         // // type="VRX"
-		  // type="OBJ"
-        // />
-      // </ViroNode>
+	  {/* <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
+        <Viro3DObject
+          //source={require('./emoji_smile.vrx')}
+          source={require('./untitled.obj')}
+          position={[0, .1, 0]}
+          scale={[.2, .2, .2]}
+          type="VRX"
+		  type="OBJ"
+        />
+      </ViroNode> */}
 	  
-       // <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
-        // <Viro3DObject
-          // source={require('./emoji_smile.vrx')}
-          // position={[0, .1, 0]}
-          // scale={[.2, .2, .2]}
-          // type="VRX"
-        // />
-      // </ViroNode> 
+       <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
+        <Viro3DObject
+          source={require('./emoji_smile.vrx')}
+          position={[0, .1, 0]}
+          scale={[.2, .2, .2]}
+          type="VRX"
+        />
+      </ViroNode> 
 
     </ViroARScene>
   );
