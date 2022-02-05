@@ -30,35 +30,41 @@ const HelloWorldSceneAR = () => {
   const [text, setText] = useState('Initializing AR...');
 
   function onInitialized(state, reason) {
-    console.log('guncelleme', state, reason);
+    console.log('consol', state, reason);
     if (state === ViroConstants.TRACKING_NORMAL) {
       setText('AR Demo!');
     } else if (state === ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
     }
   }
+  
 ViroARTrackingTargets.createTargets({ 
-	"targetOne" : { source : require('./singe.png'), orientation : "Up",    physicalWidth : 0.25 
+	"targetOne" : { source : require('./singe.png'), orientation : "Up",    physicalWidth : 0.25} ,
+	"targetTwo" : { source : require('./N1.png'), orientation : "Up",    physicalWidth : 0.25 
 	}});// real world width in meters  
   return (
-  // <ViroARScene  onTrackingUpdated={onInitialized}>  
-	  // <ViroARImageMarker target={"targetOne"} >    
-		// <ViroBox position={[0, .25, 0]} scale={[.5, .5, .5]} />  
-		// setText('Singe image found');
-	  // </ViroARImageMarker>
-  // </ViroARScene>
     <ViroARScene onTrackingUpdated={onInitialized}>
 		  <ViroARImageMarker target={"targetOne"} >
         
         <Viro3DObject
           source={require('./untitled.obj')}
           position={[0, .1, 0]}
-          scale={[-2, -2, -2]}
+          scale={[-20, -20, -20]}
           // position={[0, .1, 0]}
           // scale={[.1, .1, .1]}
 		      type="OBJ"
         />
 	  </ViroARImageMarker>
+		  <ViroARImageMarker target={"targetTwo"} >
+        
+        <Viro3DObject
+          source={require('./emoji_smile.vrx')}
+          position={[0, .1, 0]}
+          scale={[-8, -8, -8]}
+		      type="VRX"
+        />
+	  </ViroARImageMarker>
+    
       <ViroText
         text={text}
         scale={[0.5, 0.5, 0.5]}
@@ -66,66 +72,6 @@ ViroARTrackingTargets.createTargets({
         style={styles.helloWorldTextStyle}
       />
       <ViroAmbientLight color={"#aaaaaa"} />
-      <ViroARPlaneSelector>
-        <ViroNode position={[0, -.5, 0]} dragType="FixedToWorld" onDrag={() => { }} >
-
-          {/* Spotlight to cast light on the object and a shadow on the surface, see
-              the Viro documentation for more info on lights & shadows */}
-          <ViroSpotLight
-            innerAngle={5}
-            outerAngle={45}
-            direction={[0, -1, -.2]}
-            position={[0, 3, 0]}
-            color="#ffffff"
-            castsShadow={true}
-            influenceBitMask={2}
-            shadowMapSize={2048}
-            shadowNearZ={2}
-            shadowFarZ={5}
-            shadowOpacity={.7} />
-          <Viro3DObject
-            //source={require('./untitled.obj')}
-			source={require('./emoji_smile.vrx')}
-            position={[0, .1, 0]}
-            scale={[.2, .2, .2]}
-            //type="OBJ"
-            type="VRX"
-			animation={{name:'Take 001',run:true,loop:true, delay:1000}}
-            lightReceivingBitMask={3}
-            shadowCastingBitMask={2}
-            transformBehaviors={['billboardY']}
-            resources={[require('./emoji_smile_diffuse.png'),
-            require('./emoji_smile_specular.png'),
-            require('./emoji_smile_normal.png')]} 
-		  />
-          <ViroQuad
-            rotation={[-90, 0, 0]}
-            width={.5} height={.5}
-            arShadowReceiver={true}
-            lightReceivingBitMask={2} />
-	
-        </ViroNode>
-      </ViroARPlaneSelector>
-	  {/* <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
-        <Viro3DObject
-          //source={require('./emoji_smile.vrx')}
-          source={require('./untitled.obj')}
-          position={[0, .1, 0]}
-          scale={[.2, .2, .2]}
-          type="VRX"
-		  type="OBJ"
-        />
-      </ViroNode> */}
-	  
-       <ViroNode position={[0, 0, -1]} dragType="FixedToWorld" onDrag={() => { }} >
-        <Viro3DObject
-          source={require('./emoji_smile.vrx')}
-          position={[0, .1, 0]}
-          scale={[.2, .2, .2]}
-          type="VRX"
-        />
-      </ViroNode> 
-
     </ViroARScene>
   );
 };
