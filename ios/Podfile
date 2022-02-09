@@ -14,6 +14,12 @@ target 'AR_Demo_RN' do
   pod 'ViroReact', :path => '../node_modules/@viro-community/react-viro/ios/'
   pod 'ViroKit_static_lib', :path => '../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/static_lib'
 
+  pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'
+
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'AR_Demo_RNTests' do
     inherit! :complete
     # Pods for testing

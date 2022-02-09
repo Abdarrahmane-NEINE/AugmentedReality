@@ -5,9 +5,9 @@
  * @format
  * @flow strict-local
  */
+// import all the components we are going to use
 
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
 import {
   ViroARScene,
   ViroText,
@@ -23,8 +23,27 @@ import {
    
   ViroARTrackingTargets,
   ViroARImageMarker,
-  ViroBox
+  ViroBox,
+
 } from '@viro-community/react-viro';
+
+
+
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
+
+import {useRef} from 'react';
+//screen shot app
+import ViewShot from 'react-native-view-shot';
+
+
 
 const HelloWorldSceneAR = () => {
   const [text, setText] = useState('Initializing AR...');
@@ -38,40 +57,134 @@ const HelloWorldSceneAR = () => {
     }
   }
   
+  // const viewShot = useRef(null);
+
+  // captureAndShareScreenshot = () => {
+    // viewShot.capture().then((uri) => {
+      // RNFS.readFile(uri, 'base64').then((res) => {
+        // let urlString = 'data:image/jpeg;base64,' + res;
+        // let options = {
+          // title: 'Share Title',
+          // message: 'Share Message',
+          // url: urlString,
+          // type: 'image/jpeg',
+        // };
+        // Share.open(options)
+          // .then((res) => {
+            // console.log(res);
+          // })
+          // .catch((err) => {
+            // err && console.log(err);
+          // });
+      // });
+    // });
+  // };
+
 ViroARTrackingTargets.createTargets({ 
 	"targetOne" : { source : require('./singe.png'), orientation : "Up",    physicalWidth : 0.25} ,
-	"targetTwo" : { source : require('./N1.png'), orientation : "Up",    physicalWidth : 0.25 
-	}});// real world width in meters  
+	"targetTwo" : { source : require('./N1.png'), orientation : "Up",    physicalWidth : 0.25  },
+	"targetThree" : { source : require('./monster-mash.png'), orientation : "Up",    physicalWidth : 0.25 }
+	});// real world width in meters  
   return (
+    
     <ViroARScene onTrackingUpdated={onInitialized}>
+
+
 		  <ViroARImageMarker target={"targetOne"} >
-        
+            <ViroSpotLight
+            innerAngle={5}
+            outerAngle={45}
+            direction={[0, -1, -.2]}
+            position={[0, 3, 0]}
+            color="#ffffff"
+            castsShadow={true}
+            influenceBitMask={2}
+            shadowMapSize={2048}
+            shadowNearZ={2}
+            shadowFarZ={5}
+            shadowOpacity={.7} />
         <Viro3DObject
-          source={require('./untitled.obj')}
+          source={require('./monkey.obj')}
+          // source={require('./emoji_smile.vrx')}
+
           position={[0, .1, 0]}
-          scale={[-20, -20, -20]}
-          // position={[0, .1, 0]}
-          // scale={[.1, .1, .1]}
+          scale={[0.04, 0.04, 0.04]}
+		  
+		      // type="VRX"
 		      type="OBJ"
+			  animation={{name:'Take 001',run:true,loop:true, delay:1000}}
+			        lightReceivingBitMask={3}
+            shadowCastingBitMask={2}
+            transformBehaviors={['billboardY']}
         />
 	  </ViroARImageMarker>
 		  <ViroARImageMarker target={"targetTwo"} >
+            <ViroSpotLight
+            innerAngle={5}
+            outerAngle={45}
+            direction={[0, -1, -.2]}
+            position={[0, 3, 0]}
+            color="#ffffff"
+            castsShadow={true}
+            influenceBitMask={2}
+            shadowMapSize={2048}
+            shadowNearZ={2}
+            shadowFarZ={5}
+            shadowOpacity={.7} />
         
-        <Viro3DObject
-          source={require('./emoji_smile.vrx')}
+		<Viro3DObject
+          source={require('./snake.obj')}
+          // source={require('./emoji_smile.vrx')}
+
           position={[0, .1, 0]}
-          scale={[-8, -8, -8]}
-		      type="VRX"
+          scale={[0.04, 0.04, 0.04]}
+		  
+		      // type="VRX"
+		      type="OBJ"
+			  animation={{name:'Take 001',run:true,loop:true, delay:1000}}
+			        lightReceivingBitMask={3}
+            shadowCastingBitMask={2}
+            transformBehaviors={['billboardY']}
         />
 	  </ViroARImageMarker>
-    
-      <ViroText
-        text={text}
+		  <ViroARImageMarker target={"targetThree"} >
+            <ViroSpotLight
+            innerAngle={5}
+            outerAngle={45}
+            direction={[0, -1, -.2]}
+            position={[0, 3, 0]}
+            color="#ffffff"
+            castsShadow={true}
+            influenceBitMask={2}
+            shadowMapSize={2048}
+            shadowNearZ={2}
+            shadowFarZ={5}
+            shadowOpacity={.7} />
+        
+		<Viro3DObject
+          source={require('./snake.obj')}
+          // source={require('./emoji_smile.vrx')}
+
+          position={[0, .1, 0]}
+          scale={[0.04, 0.04, 0.04]}
+		  
+		      // type="VRX"
+		      type="OBJ"
+			  animation={{name:'Take 001',run:true,loop:true, delay:1000}}
+			        lightReceivingBitMask={3}
+            shadowCastingBitMask={2}
+            transformBehaviors={['billboardY']}
+        />
+	  </ViroARImageMarker>
+    <ViroText
+        text={''}
         scale={[0.5, 0.5, 0.5]}
         position={[0, 0, -1]}
         style={styles.helloWorldTextStyle}
       />
+      
       <ViroAmbientLight color={"#aaaaaa"} />
+      
     </ViroARScene>
   );
 };
