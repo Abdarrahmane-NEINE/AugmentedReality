@@ -14,6 +14,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B1DE914898460845BECD5209 /* libPods-AR_Demo_RN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51161C50180B6458DF4BE31D /* libPods-AR_Demo_RN.a */; };
 		D6A8ADD8AB72F9EB5F7030C9 /* libPods-AR_Demo_RN-AR_Demo_RNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51435E7102A22E550C9D4103 /* libPods-AR_Demo_RN-AR_Demo_RNTests.a */; };
+		9A32052809204FC6AF5D37F7 /* ReactNativeSocialShare.app in Resources */ = {isa = PBXBuildFile; fileRef = 34B9B138D61C421989232DFA /* ReactNativeSocialShare.app */; };
+		8730210397194B50B6C55E43 /* ReactNativeSocialShareTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 4DECE862AB89422EB49428DF /* ReactNativeSocialShareTests.xctest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		A611F0351A17EF1D2B4ED77F /* Pods-AR_Demo_RN-AR_Demo_RNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR_Demo_RN-AR_Demo_RNTests.release.xcconfig"; path = "Target Support Files/Pods-AR_Demo_RN-AR_Demo_RNTests/Pods-AR_Demo_RN-AR_Demo_RNTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8EEDAA5695F801389738AF9 /* Pods-AR_Demo_RN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR_Demo_RN.release.xcconfig"; path = "Target Support Files/Pods-AR_Demo_RN/Pods-AR_Demo_RN.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		165C61355B6445F7BA4B7059 /* ReactNativeSocialShare.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeSocialShare.xcodeproj"; path = "../node_modules/react-native-social-share/ReactNativeSocialShare.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		34B9B138D61C421989232DFA /* ReactNativeSocialShare.app */ = {isa = PBXFileReference; name = "ReactNativeSocialShare.app"; path = "ReactNativeSocialShare.app"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.application; explicitFileType = undefined; includeInIndex = 0; };
+		4DECE862AB89422EB49428DF /* ReactNativeSocialShareTests.xctest */ = {isa = PBXFileReference; name = "ReactNativeSocialShareTests.xctest"; path = "ReactNativeSocialShareTests.xctest"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.cfbundle; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +65,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DE914898460845BECD5209 /* libPods-AR_Demo_RN.a in Frameworks */,
+				9A32052809204FC6AF5D37F7 /* ReactNativeSocialShare.app in Resources */,
+				8730210397194B50B6C55E43 /* ReactNativeSocialShareTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +116,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				165C61355B6445F7BA4B7059 /* ReactNativeSocialShare.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -449,6 +457,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR_Demo_RN.app/AR_Demo_RN";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/..",
+				);
 			};
 			name = Debug;
 		};
@@ -476,6 +493,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR_Demo_RN.app/AR_Demo_RN";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/..",
+				);
 			};
 			name = Release;
 		};
@@ -503,6 +529,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/..",
+				);
 			};
 			name = Debug;
 		};
@@ -528,6 +558,10 @@
 				PRODUCT_NAME = AR_Demo_RN;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/..",
+				);
 			};
 			name = Release;
 		};
